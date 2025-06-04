@@ -71,22 +71,52 @@ function CipherLabContainer() {
 function Navbar() {
   return (
     <nav className="navbar cryptolearn-navbar">
-      <div className="container" style={{maxWidth: 1200, width: '100%', margin: '0 auto'}}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
-          <div className="logo">
-            <span
-              style={{
-                color: 'var(--secondary)',
-                fontSize: '2.15rem',
-                fontWeight: 800,
-                letterSpacing: '0.02em',
-                lineHeight: 1,
-              }}
-            >
-              CipherLab
-            </span>
-          </div>
-          <a href="https://github.com/" style={{color:"var(--accent)", fontWeight: 500, textDecoration:"none"}} target="_blank" rel="noopener noreferrer">GitHub</a>
+      <div className="container" style={{ maxWidth: 1200, width: '100%', margin: '0 auto', position: 'relative', display: 'flex', justifyContent: 'center', alignItems: 'center', height: 70 }}>
+        <div style={{
+          position: "absolute",
+          left: 0,
+          top: 0,
+          height: "100%",
+          display: "flex",
+          alignItems: "center",
+          paddingLeft: 24
+        }}>
+          <a href="https://github.com/"
+            style={{
+              color: "var(--accent)",
+              fontWeight: 500,
+              textDecoration: "none",
+              fontSize: "1.06rem",
+            }}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="GitHub"
+          >
+            GitHub
+          </a>
+        </div>
+        <div style={{
+          margin: "0 auto",
+          textAlign: "center",
+          width: "100%",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center"
+        }}>
+          <span
+            style={{
+              color: 'var(--secondary)',
+              fontSize: '2.15rem',
+              fontWeight: 800,
+              letterSpacing: '0.02em',
+              lineHeight: 1,
+              textAlign: 'center',
+              width: "fit-content"
+            }}
+            className="cipherlab-branding-title"
+          >
+            CipherLab
+          </span>
         </div>
       </div>
     </nav>
