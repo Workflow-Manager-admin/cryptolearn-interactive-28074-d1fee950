@@ -359,12 +359,13 @@ select:focus {
     min-width: 0;
     width: 100%;
     border-right: none;
-    border-bottom: 1.5px solid var(--border-color);
+    border-bottom: 2px solid var(--accent);
     min-height: unset;
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 12px 0 2px 0;
+    background: #111c13;
   }
   .cryptolearn-sidebar ul {
     display: flex;
@@ -378,8 +379,8 @@ select:focus {
     border-bottom: 4px solid transparent;
   }
   .cryptolearn-sidebar li.active {
-    border-bottom: 4px solid var(--secondary);
-    background: rgba(245,158,66,0.07);
+    border-bottom: 4px solid var(--accent);
+    background: rgba(57,255,20,0.07);
     border-left: none;
   }
   .cryptolearn-content {
@@ -394,7 +395,10 @@ select:focus {
 .cryptolearn-section h2,
 .cryptolearn-section-title,
 .cryptolearn-edu-title {
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-mono);
+  color: var(--secondary);
+  text-shadow: 0 0 8px #39ff1465;
+  font-weight: 900;
 }
 
 footer {
