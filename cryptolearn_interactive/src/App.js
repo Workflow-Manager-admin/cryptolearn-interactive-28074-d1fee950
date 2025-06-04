@@ -873,7 +873,7 @@ function PerformanceChartSection() {
             borderRadius: 8,
             transition: "width 0.2s"
           }}
-          aria-label="YES Cryptographic Performance Bar Chart"
+          aria-label="CipherLab Cryptographic Performance Bar Chart"
         />
       </div>
       <div style={{color: "var(--text-secondary)", fontSize: ".98rem", marginTop: 16}}>

@@ -237,7 +237,7 @@ function AlgorithmsOverviewPage({ onNavigate }) {
         padding: "15px 0",
         fontSize: "0.97rem"
       }}>
-        YES &mdash; Algorithms Overview &copy; {new Date().getFullYear()}
+        CipherLab &mdash; Algorithms Overview &copy; {new Date().getFullYear()}
       </footer>
     </div>
   );
@@ -251,7 +251,7 @@ function AlgorithmsOverviewNavbar({ onNavigate }) {
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", width: "100%" }}>
           <div className="logo">
             <span className="logo-symbol" style={{ color: "var(--accent)" }}>*</span>{" "}
-            <span style={{ color: "var(--secondary)" }}>YES</span>
+            <span style={{ color: "var(--secondary)" }}>CipherLab</span>
           </div>
           {onNavigate ? (
             <button
