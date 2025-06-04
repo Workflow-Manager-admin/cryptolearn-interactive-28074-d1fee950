@@ -248,12 +248,29 @@ function AESSimulator() {
   const [output, setOutput] = useState('');
   const [mode, setMode] = useState('encrypt');
   const [status, setStatus] = useState('');
-  // For animations (much simplified!—AES algorithm step animation is very complex.)
   const [showAnim, setShowAnim] = useState(false);
+  const [keyTouched, setKeyTouched] = useState(false);
 
-  function handlePlaintextChange(e) { setPlaintext(e.target.value); }
-  function handleKeyChange(e) { setKey(e.target.value); }
-  function handleModeChange(e) { setMode(e.target.value); setOutput(''); }
+  function handlePlaintextChange(e) {
+    setPlaintext(e.target.value);
+  }
+
+  function handleKeyChange(e) {
+    setKey(e.target.value);
+    if (!keyTouched) setKeyTouched(true);
+  }
+
+  function handleKeyBlur() {
+    setKeyTouched(true);
+  }
+
+  function handleModeChange(e) {
+    setMode(e.target.value);
+    setOutput('');
+    setShowAnim(false);
+    setStatus('');
+  }
+
   function validateInputs() {
     if (key.length !== 16) {
       setStatus("AES-128 requires a 16-character key.");
@@ -262,6 +279,7 @@ function AESSimulator() {
     setStatus("");
     return true;
   }
+
   function handleCompute() {
     if (!validateInputs()) return;
     try {
@@ -282,32 +300,90 @@ function AESSimulator() {
     }
   }
 
-  // Minimal animation: show input⇨key⇨output highlight (not true S-Box or rounds)
+  // Always show the Key input field when AES is selected, and provide live validation for 16-char length.
   return (
     <div className="cryptolearn-section">
       <h2 className="cryptolearn-section-title">AES-128 Simulator</h2>
       <div className="cryptolearn-input-block">
         <label>Plaintext / Ciphertext:</label>
-        <input type="text" value={plaintext} onChange={handlePlaintextChange} style={{width:"40%"}} />
-        <label style={{marginLeft:8}}>Key (16 chars):</label>
-        <input type="text" value={key} maxLength={16} minLength={16} onChange={handleKeyChange} style={{width:160, fontFamily:'monospace'}} />
-        <select value={mode} style={{marginLeft:12}} onChange={handleModeChange}>
+        <input
+          type="text"
+          value={plaintext}
+          onChange={handlePlaintextChange}
+          style={{ width: "40%" }}
+        />
+        <label style={{ marginLeft: 8 }}>Key (16 chars):</label>
+        <input
+          type="text"
+          value={key}
+          maxLength={16}
+          minLength={16}
+          onBlur={handleKeyBlur}
+          onChange={handleKeyChange}
+          style={{
+            width: 160,
+            fontFamily: 'monospace',
+            borderColor:
+              keyTouched && key.length !== 16
+                ? 'red'
+                : 'var(--accent)'
+          }}
+          aria-label="AES key input"
+          aria-invalid={keyTouched && key.length !== 16}
+        />
+        {keyTouched && key.length !== 16 && (
+          <span
+            style={{
+              color: 'red',
+              fontSize: '0.96rem',
+              marginLeft: 8,
+              fontWeight: 500
+            }}
+            role="alert"
+            aria-live="polite"
+          >
+            Key must be exactly 16 characters
+          </span>
+        )}
+        <select value={mode} style={{ marginLeft: 12 }} onChange={handleModeChange}>
           <option value="encrypt">Encrypt</option>
           <option value="decrypt">Decrypt</option>
         </select>
-        <button className="btn" style={{marginLeft:12}} onClick={handleCompute}>Compute</button>
+        <button
+          className="btn"
+          style={{ marginLeft: 12 }}
+          onClick={handleCompute}
+          disabled={key.length !== 16}
+        >
+          Compute
+        </button>
       </div>
       <div className="cryptolearn-output-block">
         <label>Result:</label>
-        <output style={{marginLeft:8, fontWeight:600, wordBreak:'break-all'}}>{output}</output>
-        <span style={{marginLeft:16, color:'var(--accent)'}}>{status}</span>
+        <output
+          style={{
+            marginLeft: 8,
+            fontWeight: 600,
+            wordBreak: 'break-all'
+          }}
+        >
+          {output}
+        </output>
+        <span style={{ marginLeft: 16, color: status === 'Success' ? 'var(--accent)' : 'red' }}>
+          {status}
+        </span>
       </div>
       {showAnim && (
         <div className="cryptolearn-visualization">
-          <AESVisualization plaintext={plaintext} key={key} ciphertext={output} mode={mode} />
+          <AESVisualization
+            plaintext={plaintext}
+            key={key}
+            ciphertext={output}
+            mode={mode}
+          />
         </div>
       )}
-      <EducationalContentAndQuiz algorithm="AES"/>
+      <EducationalContentAndQuiz algorithm="AES" />
     </div>
   );
 }
