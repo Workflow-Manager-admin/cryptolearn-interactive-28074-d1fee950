@@ -708,89 +708,117 @@ function MiniQuiz({ questions, quizId }) {
 
 // PUBLIC_INTERFACE
 function PerformanceChartSection() {
-  const [results, setResults] = useState([]);
+  // Results state persists in component even after tab switches, using localStorage as a backup.
+  const [results, setResults] = useState(() => {
+    const stored = localStorage.getItem("cryptoPerfResults");
+    return stored ? JSON.parse(stored) : [];
+  });
   const chartRef = React.useRef();
+  const chartInstanceRef = React.useRef(null); // Will hold the Chart.js instance itself
   const [isRunning, setIsRunning] = useState(false);
 
   // PUBLIC_INTERFACE
   function handleRunBenchmarks() {
     setIsRunning(true);
     setTimeout(() => {
-      // Only plaintext changes (fixed size for fairness)
       const plain = 'Lorem ipsum dolor sit amet!';
-      const key = 'abcdefghijklmnop'; // 16-char AES key
-
+      const key = 'abcdefghijklmnop';
       const t0 = performance.now();
-      // Caesar (shift 3, encrypt, 10000 iters for measurable time)
-      for (let i = 0; i < 10000; ++i)
-        caesarEncrypt(plain, 3);
+      for (let i = 0; i < 10000; ++i) caesarEncrypt(plain, 3);
       const t1 = performance.now();
-
-      // AES (1000 iters, as it's heavier)
-      for (let i = 0; i < 1000; ++i)
-        CryptoJS.AES.encrypt(plain, key);
+      for (let i = 0; i < 1000; ++i) CryptoJS.AES.encrypt(plain, key);
       const t2 = performance.now();
-
-      // SHA-256 (2000 iters)
-      for (let i = 0; i < 2000; ++i)
-        CryptoJS.SHA256(plain).toString(CryptoJS.enc.Hex);
+      for (let i = 0; i < 2000; ++i) CryptoJS.SHA256(plain).toString(CryptoJS.enc.Hex);
       const t3 = performance.now();
 
       const caesarTime = t1 - t0;
       const aesTime = t2 - t1;
       const shaTime = t3 - t2;
 
-      setResults([
+      const newResults = [
         { name: 'Caesar', ms: caesarTime },
         { name: 'AES-128', ms: aesTime },
         { name: 'SHA-256', ms: shaTime }
-      ]);
+      ];
+      setResults(newResults);
+      localStorage.setItem("cryptoPerfResults", JSON.stringify(newResults));
       setIsRunning(false);
     }, 200);
   }
 
+  // Ensure Chart.js instance is cleaned up and replaced properly.
   React.useEffect(() => {
     if (!chartRef.current || results.length === 0) return;
-    const ctx = chartRef.current.getContext('2d');
-    if (window.cryptoChartInstance) {
-      window.cryptoChartInstance.destroy();
+    if (chartInstanceRef.current) {
+      chartInstanceRef.current.destroy();
     }
-    window.cryptoChartInstance = new Chart(ctx, {
+    // Responsive width: adapt chart to container's width.
+    const ctx = chartRef.current.getContext('2d');
+    chartInstanceRef.current = new Chart(ctx, {
       type: 'bar',
       data: {
         labels: results.map(r => r.name),
         datasets: [{
           label: 'Execution Time (ms, lower is faster)',
           data: results.map(r => Number(r.ms.toFixed(2))),
-          backgroundColor: ['var(--secondary)', 'var(--accent)', '#84e1fc'],
-          borderWidth: 1
+          backgroundColor: ['#F59E42', '#22D3EE', '#84e1fc'],
+          borderWidth: 1,
         }]
       },
       options: {
         indexAxis: 'y',
         responsive: true,
+        maintainAspectRatio: false,
         plugins: { legend: { display: false } },
         scales: {
-          x: { beginAtZero: true, grid: { color: '#363a' }, ticks: { color: 'var(--text-color)' } },
-          y: { grid: { color: '#363a' }, ticks: { color: 'var(--text-color)' } },
-        }
+          x: { beginAtZero: true, grid: { color: '#363a' }, ticks: { color: '#fff' } },
+          y: { grid: { color: '#363a' }, ticks: { color: '#fff' } },
+        },
+        animation: { duration: 700 }
       }
     });
     // Cleanup
-    return () => window.cryptoChartInstance && window.cryptoChartInstance.destroy();
+    return () => {
+      if (chartInstanceRef.current) {
+        chartInstanceRef.current.destroy();
+        chartInstanceRef.current = null;
+      }
+    };
   }, [results]);
 
+  // Add Responsive resize for chart canvas using flexbox and relative height.
   return (
     <div className="cryptolearn-section">
       <h2 className="cryptolearn-section-title">Performance Comparison</h2>
-      <button className="btn" style={{marginBottom: 20}} onClick={handleRunBenchmarks} disabled={isRunning}>
-        {isRunning ? "Running Benchmarks…" : "Run Benchmarks"}
+      <button className="btn"
+        style={{marginBottom: 20}}
+        onClick={handleRunBenchmarks}
+        disabled={isRunning}
+        aria-busy={isRunning}
+      >
+        {isRunning ? "Running Benchmarks…" : (results.length ? "Re-run Benchmarks" : "Run Benchmarks")}
       </button>
-      <div style={{maxWidth:600, margin:"0 auto"}}>
-        <canvas ref={chartRef} width={600} height={220} style={{background:"#191b23", borderRadius:8}}></canvas>
+      <div style={{
+        maxWidth: 650, margin: "0 auto",
+        minHeight: 260, height: "clamp(220px,25vw,340px)",
+        display: "flex", justifyContent: "center", alignItems: "center"
+      }}>
+        <canvas
+          ref={chartRef}
+          style={{
+            width: "98%",
+            height: "240px",
+            background: "#191b23",
+            borderRadius: 8,
+            transition: "width 0.2s"
+          }}
+          aria-label="Cryptographic Performance Bar Chart"
+        />
       </div>
-      <div style={{color:"var(--text-secondary)", fontSize:".98rem", marginTop:16}}>
-        ({results.length ? "Results up-to-date." : "Measures typical execution times for 10k Caesar/1k AES/2k SHA runs."})
+      <div style={{color: "var(--text-secondary)", fontSize: ".98rem", marginTop: 16}}>
+        {results.length
+          ? <span>Results up-to-date. <span style={{color: "var(--accent)"}}>Lower ms means faster.</span></span>
+          : <span>Measures typical execution times for 10k Caesar, 1k AES, 2k SHA-256 runs. Click 'Run Benchmarks'.</span>}
       </div>
     </div>
   );
