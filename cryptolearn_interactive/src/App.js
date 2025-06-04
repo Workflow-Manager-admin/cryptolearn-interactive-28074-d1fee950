@@ -14,11 +14,11 @@ function App() {
 }
 
 /* PUBLIC_INTERFACE
-   Rework YESContainer to add "Algorithms Overview" as the first sidebar/tab.
+   Rework CipherLabContainer to add "Algorithms Overview" as the first sidebar/tab.
    - Use 'algorithmsOverview' as the key.
    - Integrate AlgorithmsOverviewPage with onNavigate prop.
 */
-function YESContainer() {
+function CipherLabContainer() {
   // Tab options: Algorithms Overview, Caesar, AES, SHA-256, Performance
   const [selectedTab, setSelectedTab] = useState('algorithmsOverview');
   const tabs = [
