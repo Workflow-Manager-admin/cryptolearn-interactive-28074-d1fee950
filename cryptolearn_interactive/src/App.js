@@ -13,12 +13,16 @@ function App() {
   );
 }
 
-// PUBLIC_INTERFACE
+/* PUBLIC_INTERFACE
+   Rework YESContainer to add "Algorithms Overview" as the first sidebar/tab.
+   - Use 'algorithmsOverview' as the key.
+   - Integrate AlgorithmsOverviewPage with onNavigate prop.
+*/
 function YESContainer() {
-  // Tab options: Caesar, AES, SHA-256, Performance
-  const [selectedTab, setSelectedTab] = useState('Caesar');
-  // For mobile, this could be a drawer, but here styled as a responsive sidebar/topnav
+  // Tab options: Algorithms Overview, Caesar, AES, SHA-256, Performance
+  const [selectedTab, setSelectedTab] = useState('algorithmsOverview');
   const tabs = [
+    { name: 'algorithmsOverview', label: 'Algorithms Overview' },
     { name: 'Caesar', label: 'Caesar Cipher' },
     { name: 'AES', label: 'AES-128' },
     { name: 'SHA256', label: 'SHA-256 Hash' },
@@ -47,6 +51,9 @@ function YESContainer() {
           </ul>
         </nav>
         <main className="cryptolearn-content">
+          {selectedTab === 'algorithmsOverview' && (
+            <AlgorithmsOverviewPage onNavigate={setSelectedTab} />
+          )}
           {selectedTab === 'Caesar' && <CaesarCipherSimulator />}
           {selectedTab === 'AES' && <AESSimulator />}
           {selectedTab === 'SHA256' && <SHA256Simulator />}
