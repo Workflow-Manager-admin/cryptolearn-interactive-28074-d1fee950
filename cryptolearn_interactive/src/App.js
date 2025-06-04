@@ -326,10 +326,17 @@ function AESSimulator() {
             borderColor:
               keyTouched && key.length !== 16
                 ? 'red'
-                : 'var(--accent)'
+                : 'var(--accent)',
+            outline: keyTouched ? (key.length !== 16 ? '2.5px solid red' : '2.5px solid var(--accent)') : '',
+            background: "#181826",
+            color: 'var(--text-color)',
+            zIndex: 12, // ensure above overlays
+            position: "relative", // ensure stacking
+            boxShadow: "0 0 0 2px rgba(34,211,238,0.1)"
           }}
           aria-label="AES key input"
           aria-invalid={keyTouched && key.length !== 16}
+          autoFocus
         />
         {keyTouched && key.length !== 16 && (
           <span
