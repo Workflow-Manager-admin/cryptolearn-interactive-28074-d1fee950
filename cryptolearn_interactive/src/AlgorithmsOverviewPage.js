@@ -251,8 +251,7 @@ function AlgorithmsOverviewNavbar({ onNavigate }) {
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", width: "100%" }}>
           <div className="logo">
             <span className="logo-symbol" style={{ color: "var(--accent)" }}>*</span>{" "}
-            <span style={{ color: "var(--secondary)" }}>CryptoLearn</span>{" "}
-            <span style={{ color: "var(--accent)", fontWeight: 400, fontSize: "1rem" }}>Interactive</span>
+            <span style={{ color: "var(--secondary)" }}>YES</span>
           </div>
           {onNavigate ? (
             <button
