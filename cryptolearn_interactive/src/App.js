@@ -61,7 +61,7 @@ function CipherLabContainer() {
         </main>
       </div>
       <footer style={{ textAlign: 'center', color: 'var(--text-secondary)', padding: '16px 0', fontSize: '0.92rem' }}>
-        YES © {new Date().getFullYear()} &mdash; Educational Purposes Only
+        CipherLab © {new Date().getFullYear()} &mdash; Educational Purposes Only
       </footer>
     </>
   );
