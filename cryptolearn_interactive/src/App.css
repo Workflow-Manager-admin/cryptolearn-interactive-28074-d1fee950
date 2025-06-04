@@ -1,14 +1,43 @@
 :root {
-  --primary: #000000;
-  --secondary: #F59E42;
-  --accent: #22D3EE;
-  --base-dark: #101014;
-  --base-light: #22242c;
-  --text-color: #ffffff;
-  --text-secondary: rgba(255, 255, 255, 0.7);
-  --border-color: rgba(255, 255, 255, 0.13);
-  --focus-ring: 0 0 0 2.5px var(--accent);
+  --primary: #080c09;
+  --secondary: #39ff14; /* neon green */
+  --accent: #00eaff;    /* electric blue */
+  --accent-pink: #ff00de; /* optional glowing accent */
+  --base-dark: #111413;
+  --base-light: #181c18;
+  --text-color: #e6ffe6;
+  --text-secondary: rgba(57,255,20,0.7);
+  --border-color: #25c94f70;
+  --matrix-bg: linear-gradient(160deg, #09120a 80%, #001a06 100%);
+  --focus-ring: 0 0 0 2.5px var(--secondary);
+  --glitch-shadow: 0 0 4px #00ffae, 0 0 11px #39ff14, 0 0 40px #00eaff;
+  --font-mono: 'Fira Mono', 'Source Code Pro', 'Consolas', 'Menlo', 'monospace';
 }
+
+/* --- Hacker / Matrix Scanline Overlay --- */
+body::before {
+  content: "";
+  pointer-events: none;
+  position: fixed;
+  z-index: 0;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background:
+    repeating-linear-gradient(to bottom, rgba(39,255,47,0.07) 0,rgba(39,255,47,0.12) 1px,transparent 2px,transparent 6px);
+  opacity: 0.14;
+}
+
+body::after {
+  content: "";
+  pointer-events: none;
+  position: fixed;
+  z-index: 0;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: url('https://www.transparenttextures.com/patterns/cubes.png'), /* subtle effect */
+              repeating-linear-gradient(to bottom, rgba(0,235,23,0.09) 0, rgba(0,235,23,0.03) 3px, transparent 4px, transparent 18px);
+  opacity: 0.09;
+}
+
+
 /* --- CryptoLearn Interactive Custom Styles --- */
 
 body {
