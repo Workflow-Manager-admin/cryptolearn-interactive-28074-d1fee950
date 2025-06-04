@@ -301,13 +301,31 @@ function AESSimulator() {
   }
 
   // Always show the Key input field when AES is selected, and provide live validation for 16-char length.
-  // Refactored to keep the AES key input on the second line, directly below plaintext field.
+  // Refactored so that the input lines are: 1) Plaintext, 2) Key input, 3) Button(s) (Compute).
   return (
     <div className="cryptolearn-section">
       <h2 className="cryptolearn-section-title">AES-128 Simulator</h2>
-      <div className="cryptolearn-input-block" style={{display: "flex", flexDirection: "column", alignItems: "flex-start", gap: 0, paddingBottom: 0}}>
-        {/* First line: Plaintext and Mode/Compute controls */}
-        <div style={{display: "flex", alignItems: "center", width: "100%", flexWrap: "wrap", gap: 0, paddingBottom: 8}}>
+      <div
+        className="cryptolearn-input-block"
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "flex-start",
+          gap: 0,
+          paddingBottom: 0
+        }}
+      >
+        {/* First line: Plaintext */}
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            width: "100%",
+            flexWrap: "wrap",
+            gap: 0,
+            paddingBottom: 8
+          }}
+        >
           <label>Plaintext / Ciphertext:</label>
           <input
             type="text"
@@ -315,21 +333,17 @@ function AESSimulator() {
             onChange={handlePlaintextChange}
             style={{ width: "40%", marginLeft: 4 }}
           />
-          <select value={mode} style={{ marginLeft: 16 }} onChange={handleModeChange}>
-            <option value="encrypt">Encrypt</option>
-            <option value="decrypt">Decrypt</option>
-          </select>
-          <button
-            className="btn"
-            style={{ marginLeft: 16 }}
-            onClick={handleCompute}
-            disabled={key.length !== 16}
-          >
-            Compute
-          </button>
         </div>
-        {/* Second line: Key input field, full-width beneath plaintext */}
-        <div style={{display: "flex", alignItems: "center", width: "100%", marginTop: 6, flexWrap: "wrap"}}>
+        {/* Second line: Key input */}
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            width: "100%",
+            marginTop: 4,
+            flexWrap: "wrap"
+          }}
+        >
           <label>Key (16 chars):</label>
           <input
             type="text"
@@ -346,7 +360,11 @@ function AESSimulator() {
                 keyTouched && key.length !== 16
                   ? 'red'
                   : 'var(--accent)',
-              outline: keyTouched ? (key.length !== 16 ? '2.5px solid red' : '2.5px solid var(--accent)') : '',
+              outline: keyTouched
+                ? key.length !== 16
+                  ? '2.5px solid red'
+                  : '2.5px solid var(--accent)'
+                : '',
               background: "#181826",
               color: 'var(--text-color)',
               zIndex: 12, // ensure above overlays
@@ -371,6 +389,29 @@ function AESSimulator() {
               Key must be exactly 16 characters
             </span>
           )}
+        </div>
+        {/* Third line: Mode select and Compute buttons */}
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            width: "100%",
+            marginTop: 8,
+            flexWrap: "wrap"
+          }}
+        >
+          <select value={mode} style={{ marginLeft: 0 }} onChange={handleModeChange}>
+            <option value="encrypt">Encrypt</option>
+            <option value="decrypt">Decrypt</option>
+          </select>
+          <button
+            className="btn"
+            style={{ marginLeft: 16 }}
+            onClick={handleCompute}
+            disabled={key.length !== 16}
+          >
+            Compute
+          </button>
         </div>
       </div>
       <div className="cryptolearn-output-block">
