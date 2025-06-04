@@ -263,20 +263,8 @@ function AlgorithmsOverviewNavbar({ onNavigate }) {
               Back
             </button>
           ) : (
-            <a
-              href="https://github.com/"
-              style={{
-                color: "var(--accent)",
-                fontWeight: 500,
-                textDecoration: "none",
-                fontSize: "1.06rem"
-              }}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="GitHub"
-            >
-              GitHub
-            </a>
+            // GitHub link removed as per requirements; leave space empty
+            null
           )}
         </div>
         <div style={{

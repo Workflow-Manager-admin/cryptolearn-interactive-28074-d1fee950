@@ -81,19 +81,7 @@ function Navbar() {
           alignItems: "center",
           paddingLeft: 24
         }}>
-          <a href="https://github.com/"
-            style={{
-              color: "var(--accent)",
-              fontWeight: 500,
-              textDecoration: "none",
-              fontSize: "1.06rem",
-            }}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="GitHub"
-          >
-            GitHub
-          </a>
+          {/* (GitHub link removed as per requirements) */}
         </div>
         <div style={{
           margin: "0 auto",
