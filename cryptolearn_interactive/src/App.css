@@ -42,20 +42,24 @@ body::after {
 
 body {
   margin: 0;
-  font-family: 'Inter', 'Roboto', 'Helvetica', 'Arial', sans-serif;
-  background-color: var(--primary);
+  font-family: var(--font-mono);
+  background: var(--matrix-bg), #080c09;
   color: var(--text-color);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
 }
 .app,
 .cryptolearn-main {
   min-height: 100vh;
   min-width: 100vw;
-  background: var(--primary);
+  background: var(--matrix-bg), #050805;
   color: var(--text-color);
+  font-family: var(--font-mono);
   display: flex;
   flex-direction: column;
+  position: relative;
+  z-index: 1;
 }
 .cryptolearn-navbar {
   background-color: var(--base-dark);
