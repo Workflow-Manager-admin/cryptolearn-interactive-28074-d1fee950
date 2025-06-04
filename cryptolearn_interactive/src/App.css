@@ -218,18 +218,23 @@ body {
 input[type="text"],
 input[type="number"],
 select {
-  background: #14171d;
-  color: var(--text-color);
-  border: 1.2px solid var(--accent);
-  border-radius: 4px;
+  background: #0e1811;
+  color: var(--secondary);
+  border: 1.5px solid var(--accent);
+  border-radius: 5px;
   padding: 6px 10px;
-  font-size: 1rem;
+  font-size: 1.04rem;
+  font-family: var(--font-mono);
   margin: 0 4px;
+  box-shadow: 0 0 8px #0dcf8d22;
+  transition: border .18s, box-shadow 0.15s;
 }
 input[type="text"]:focus,
 input[type="number"]:focus,
 select:focus {
   outline: var(--focus-ring);
+  border-color: var(--secondary);
+  box-shadow: 0 0 12px #2bff5f80;
 }
 /* Buttons */
 .btn {
