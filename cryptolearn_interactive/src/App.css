@@ -37,10 +37,10 @@ body {
   width: 100vw;
   z-index: 100;
 }
-.logo-symbol {
+/* .logo-symbol { Removed - no longer in use
   font-size: 1.8rem;
   vertical-align: bottom;
-}
+} */
 .cryptolearn-layout {
   display: flex;
   min-height: 100vh;
