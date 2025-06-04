@@ -237,7 +237,7 @@ function AlgorithmsOverviewPage({ onNavigate }) {
         padding: "15px 0",
         fontSize: "0.97rem"
       }}>
-        CryptoLearn Interactive &mdash; Algorithms Overview &copy; {new Date().getFullYear()}
+        YES &mdash; Algorithms Overview &copy; {new Date().getFullYear()}
       </footer>
     </div>
   );
