@@ -241,8 +241,7 @@ function CaesarCipherCanvas({ steps, animStep }) {
   );
 }
 
-import CryptoJS from 'crypto-js';
-// --- AES SIMULATOR ---
+ // --- AES SIMULATOR ---
 function AESSimulator() {
   const [plaintext, setPlaintext] = useState('');
   const [key, setKey] = useState('');
@@ -573,8 +572,7 @@ function MiniQuiz({ questions, quizId }) {
   );
 }
 
-import Chart from 'chart.js/auto';
-// --- PERFORMANCE CHART SECTION ---
+ // --- PERFORMANCE CHART SECTION ---
 
 // PUBLIC_INTERFACE
 function PerformanceChartSection() {
