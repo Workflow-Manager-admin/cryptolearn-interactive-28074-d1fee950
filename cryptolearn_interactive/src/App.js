@@ -567,28 +567,82 @@ function EducationalContentAndQuiz({ algorithm }) {
       ]
     },
     AES: {
-      title: "About AES (Advanced Encryption Standard)",
+      title: "About AES-128 (Advanced Encryption Standard)",
       explanation: (
         <>
           <div>
-            <b>AES</b> is a symmetric-key algorithm standardized by NIST. AES-128 uses 128-bit keys (16 characters) and 10 rounds of processing.<br />
+            <b>What is AES?</b><br/>
+            AES (Advanced Encryption Standard) is a symmetric block cipher standard established by NIST and widely used worldwide to secure sensitive data. <br/>
+            <br />
+
+            <b>How does AES-128 work?</b>
             <ul>
-              <li><b>Security:</b> Considered secure for most modern applications.</li>
-              <li><b>Use cases:</b> Secure communications, databases, file encryption.</li>
+              <li><b>Block Cipher:</b> Encrypts data in fixed-size blocks of 128 bits (16 bytes).</li>
+              <li><b>Key Size:</b> AES-128 uses a 128-bit (16-character) key.</li>
+              <li>
+                <b>Basic Steps (Encryption):</b>
+                <ol style={{ paddingLeft: 22, color: 'var(--text-color)' }}>
+                  <li><b>Key Expansion:</b> The original key is transformed into multiple round keys.</li>
+                  <li><b>Initial Round:</b> Plaintext is XORed with the first round key.</li>
+                  <li><b>Rounds:</b> 9 rounds in which data is transformed through:<br/>
+                    &nbsp; &bull; <b>SubBytes:</b> Byte substitution (using a table called S-box).<br/>
+                    &nbsp; &bull; <b>ShiftRows:</b> Rows of the matrix are shifted.<br/>
+                    &nbsp; &bull; <b>MixColumns:</b> Columns are mixed (mathematical transformation).<br/>
+                    &nbsp; &bull; <b>AddRoundKey:</b> XOR with a round key.
+                  </li>
+                  <li><b>Final Round:</b> Like previous rounds but leaves out MixColumns.</li>
+                  <li><b>Output:</b> The result is the ciphertext.</li>
+                </ol>
+              </li>
             </ul>
+
+            <b>Key Features:</b>
+            <ul>
+              <li>Block size: <b>128 bits (16 bytes)</b></li>
+              <li>Key size: <b>128 bits (16 characters)</b></li>
+              <li>Rounds: <b>10 rounds</b> of encryption</li>
+            </ul>
+
+            <b>Real-World Use Cases:</b>
+            <ul>
+              <li>Securing web communications (HTTPS/TLS)</li>
+              <li>Protecting files and disks (e.g., BitLocker, FileVault)</li>
+              <li>WPA2/WPA3 Wi-Fi networks</li>
+              <li>Encryption in mobile apps and databases</li>
+            </ul>
+
+            <b>Why is AES-128 Secure?</b>
+            <ul>
+              <li>Brute-forcing a 128-bit key is practically impossible with current technology.</li>
+              <li>No feasible attacks are currently known when implemented correctly.</li>
+              <li>Audited and trusted by the cryptographic community.</li>
+            </ul>
+            <div style={{ color: "var(--text-secondary)", marginTop: 10, fontStyle: "italic" }}>
+              AES-128 is considered secure for nearly all modern purposes, but always be sure to use a strong key and a secure mode of operation.
+            </div>
           </div>
         </>
       ),
       quiz: [
         {
-          q: "How many characters should an AES-128 key have?",
-          choices: ["8", "16", "32", "64"],
+          q: "What is the block size of AES-128?",
+          choices: ["128 bits", "256 bits", "8 bits", "64 bits"],
+          answer: 0
+        },
+        {
+          q: "How many rounds does AES-128 perform?",
+          choices: ["8", "10", "12", "14"],
           answer: 1
         },
         {
-          q: "What type of algorithm is AES?",
-          choices: ["Symmetric", "Asymmetric", "Hash", "Blockless"],
-          answer: 0
+          q: "Which is NOT a real-world use of AES?",
+          choices: [
+            "Securing Wi-Fi networks",
+            "Web encryption (HTTPS)",
+            "Protecting DNA sequence data (exclusively)",
+            "File and disk encryption"
+          ],
+          answer: 2
         }
       ]
     },
