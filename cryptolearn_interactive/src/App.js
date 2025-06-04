@@ -8,7 +8,7 @@ import AlgorithmsOverviewPage from './AlgorithmsOverviewPage';
 function App() {
   return (
     <div className="app cryptolearn-main">
-      <YESContainer />
+      <CipherLabContainer />
     </div>
   );
 }
