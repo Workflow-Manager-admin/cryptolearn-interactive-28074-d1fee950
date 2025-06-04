@@ -62,28 +62,32 @@ body {
   z-index: 1;
 }
 .cryptolearn-navbar {
-  background-color: var(--base-dark);
+  background-color: #121413;
   padding: 16px 0;
-  border-bottom: 1.5px solid var(--border-color);
+  border-bottom: 2px solid var(--accent);
   position: fixed;
   top: 0;
   width: 100vw;
   z-index: 100;
   min-height: 70px;
+  box-shadow: 0 0 12px #0f1e09c8;
+  font-family: var(--font-mono);
 }
 
 /* Centered CipherLab Branding Title for both App.js and AlgorithmsOverviewPage.js headers */
 .cipherlab-branding-title {
-  font-family: 'Inter', 'Roboto', sans-serif;
-  font-size: 2.15rem;
-  font-weight: 800;
-  letter-spacing: 0.02em;
+  font-family: var(--font-mono);
+  font-size: 2.4rem;
+  font-weight: 900;
+  letter-spacing: 0.06em;
   color: var(--secondary);
   line-height: 1;
-  text-align: center;
+  text-shadow: 0 0 8px #2bff5f, 0 0 20px #22d3ee80;
   margin: 0 auto;
+  text-align: center;
   width: fit-content;
   display: inline-block;
+  filter: brightness(1.1) saturate(1.2);
 }
 
 @media (max-width: 650px) {
@@ -109,11 +113,18 @@ body {
   width: 100%;
 }
 .cryptolearn-sidebar {
-  background: var(--base-dark);
+  background: #111c13;
   padding: 22px 0 22px 0;
   min-width: 185px;
-  border-right: 1.5px solid var(--border-color);
+  border-right: 2px solid var(--accent);
   min-height: 85vh;
+  font-family: var(--font-mono);
+  box-shadow: 2px 0 22px #36f40826;
+  position: relative;
+}
+
+.cryptolearn-sidebar ul {
+  font-family: var(--font-mono);
 }
 .cryptolearn-sidebar ul {
   list-style: none;
