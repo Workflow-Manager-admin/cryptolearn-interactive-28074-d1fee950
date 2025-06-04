@@ -7,13 +7,13 @@ import Chart from 'chart.js/auto';
 function App() {
   return (
     <div className="app cryptolearn-main">
-      <CryptoLearnContainer />
+      <YESContainer />
     </div>
   );
 }
 
 // PUBLIC_INTERFACE
-function CryptoLearnContainer() {
+function YESContainer() {
   // Tab options: Caesar, AES, SHA-256, Performance
   const [selectedTab, setSelectedTab] = useState('Caesar');
   // For mobile, this could be a drawer, but here styled as a responsive sidebar/topnav
@@ -53,7 +53,7 @@ function CryptoLearnContainer() {
         </main>
       </div>
       <footer style={{ textAlign: 'center', color: 'var(--text-secondary)', padding: '16px 0', fontSize: '0.92rem' }}>
-        CryptoLearn Interactive © {new Date().getFullYear()} &mdash; Educational Purposes Only
+        YES © {new Date().getFullYear()} &mdash; Educational Purposes Only
       </footer>
     </>
   );
