@@ -301,69 +301,77 @@ function AESSimulator() {
   }
 
   // Always show the Key input field when AES is selected, and provide live validation for 16-char length.
+  // Refactored to keep the AES key input on the second line, directly below plaintext field.
   return (
     <div className="cryptolearn-section">
       <h2 className="cryptolearn-section-title">AES-128 Simulator</h2>
-      <div className="cryptolearn-input-block">
-        <label>Plaintext / Ciphertext:</label>
-        <input
-          type="text"
-          value={plaintext}
-          onChange={handlePlaintextChange}
-          style={{ width: "40%" }}
-        />
-        <label style={{ marginLeft: 8 }}>Key (16 chars):</label>
-        <input
-          type="text"
-          value={key}
-          maxLength={16}
-          minLength={16}
-          onBlur={handleKeyBlur}
-          onChange={handleKeyChange}
-          style={{
-            width: 160,
-            fontFamily: 'monospace',
-            borderColor:
-              keyTouched && key.length !== 16
-                ? 'red'
-                : 'var(--accent)',
-            outline: keyTouched ? (key.length !== 16 ? '2.5px solid red' : '2.5px solid var(--accent)') : '',
-            background: "#181826",
-            color: 'var(--text-color)',
-            zIndex: 12, // ensure above overlays
-            position: "relative", // ensure stacking
-            boxShadow: "0 0 0 2px rgba(34,211,238,0.1)"
-          }}
-          aria-label="AES key input"
-          aria-invalid={keyTouched && key.length !== 16}
-          autoFocus
-        />
-        {keyTouched && key.length !== 16 && (
-          <span
-            style={{
-              color: 'red',
-              fontSize: '0.96rem',
-              marginLeft: 8,
-              fontWeight: 500
-            }}
-            role="alert"
-            aria-live="polite"
+      <div className="cryptolearn-input-block" style={{display: "flex", flexDirection: "column", alignItems: "flex-start", gap: 0, paddingBottom: 0}}>
+        {/* First line: Plaintext and Mode/Compute controls */}
+        <div style={{display: "flex", alignItems: "center", width: "100%", flexWrap: "wrap", gap: 0, paddingBottom: 8}}>
+          <label>Plaintext / Ciphertext:</label>
+          <input
+            type="text"
+            value={plaintext}
+            onChange={handlePlaintextChange}
+            style={{ width: "40%", marginLeft: 4 }}
+          />
+          <select value={mode} style={{ marginLeft: 16 }} onChange={handleModeChange}>
+            <option value="encrypt">Encrypt</option>
+            <option value="decrypt">Decrypt</option>
+          </select>
+          <button
+            className="btn"
+            style={{ marginLeft: 16 }}
+            onClick={handleCompute}
+            disabled={key.length !== 16}
           >
-            Key must be exactly 16 characters
-          </span>
-        )}
-        <select value={mode} style={{ marginLeft: 12 }} onChange={handleModeChange}>
-          <option value="encrypt">Encrypt</option>
-          <option value="decrypt">Decrypt</option>
-        </select>
-        <button
-          className="btn"
-          style={{ marginLeft: 12 }}
-          onClick={handleCompute}
-          disabled={key.length !== 16}
-        >
-          Compute
-        </button>
+            Compute
+          </button>
+        </div>
+        {/* Second line: Key input field, full-width beneath plaintext */}
+        <div style={{display: "flex", alignItems: "center", width: "100%", marginTop: 6, flexWrap: "wrap"}}>
+          <label>Key (16 chars):</label>
+          <input
+            type="text"
+            value={key}
+            maxLength={16}
+            minLength={16}
+            onBlur={handleKeyBlur}
+            onChange={handleKeyChange}
+            style={{
+              width: 180,
+              fontFamily: 'monospace',
+              marginLeft: 4,
+              borderColor:
+                keyTouched && key.length !== 16
+                  ? 'red'
+                  : 'var(--accent)',
+              outline: keyTouched ? (key.length !== 16 ? '2.5px solid red' : '2.5px solid var(--accent)') : '',
+              background: "#181826",
+              color: 'var(--text-color)',
+              zIndex: 12, // ensure above overlays
+              position: "relative", // ensure stacking
+              boxShadow: "0 0 0 2px rgba(34,211,238,0.1)"
+            }}
+            aria-label="AES key input"
+            aria-invalid={keyTouched && key.length !== 16}
+            autoFocus
+          />
+          {keyTouched && key.length !== 16 && (
+            <span
+              style={{
+                color: 'red',
+                fontSize: '0.96rem',
+                marginLeft: 8,
+                fontWeight: 500
+              }}
+              role="alert"
+              aria-live="polite"
+            >
+              Key must be exactly 16 characters
+            </span>
+          )}
+        </div>
       </div>
       <div className="cryptolearn-output-block">
         <label>Result:</label>
