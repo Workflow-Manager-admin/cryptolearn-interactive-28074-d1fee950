@@ -1,63 +1,27 @@
 import React from "react";
 import "./App.css";
 
-// PUBLIC_INTERFACE
+/**
+ * PUBLIC_INTERFACE
+ * AlgorithmsOverviewPage: Cryptographic algorithm educational overview for use in main app or standalone.
+ * When 'onNavigate' is provided, the parent (App.js container) handles navigation and layout, so this
+ * page does NOT render its own sidebar or layout. If no 'onNavigate' is provided, it renders standalone
+ * with its own sidebar and container.
+ */
 function AlgorithmsOverviewPage({ onNavigate }) {
-  // Navigation is optional: if onNavigate is provided, call it with the desired tab name; otherwise hyperlinks or arrows.
-  // For uniformity, expects parent page to provide navigation handler or active in sidebar.
+  // If no onNavigate handler, render standalone with sidebar and layout.
+  const isStandalone = !onNavigate;
 
-  return (
-    <div className="cryptolearn-main" style={{ minHeight: "100vh", width: "100vw" }}>
-      <AlgorithmsOverviewNavbar onNavigate={onNavigate} />
-      <div className="cryptolearn-layout" style={{ marginTop: 80 }}>
-        {onNavigate && (
-          <nav className="cryptolearn-sidebar" aria-label="Sidebar Navigation" style={{ minWidth: 170 }}>
-            <ul>
-              <li
-                className="active"
-                style={{ cursor: "pointer" }}
-                onClick={() => onNavigate && onNavigate("algorithmsOverview")}
-                tabIndex={0}
-                aria-label="Algorithms Overview"
-              >
-                Algorithms Overview
-              </li>
-              <li
-                style={{ cursor: "pointer" }}
-                onClick={() => onNavigate && onNavigate("Caesar")}
-                tabIndex={0}
-                aria-label="Caesar Cipher"
-              >
-                Caesar Cipher
-              </li>
-              <li
-                style={{ cursor: "pointer" }}
-                onClick={() => onNavigate && onNavigate("AES")}
-                tabIndex={0}
-                aria-label="AES-128"
-              >
-                AES-128
-              </li>
-              <li
-                style={{ cursor: "pointer" }}
-                onClick={() => onNavigate && onNavigate("SHA256")}
-                tabIndex={0}
-                aria-label="SHA-256"
-              >
-                SHA-256 Hash
-              </li>
-            </ul>
-          </nav>
-        )}
-        <main className="cryptolearn-content" style={{ paddingTop: 10 }}>
-          <section className="cryptolearn-section" style={{ marginBottom: 46 }}>
-            <h1 className="cryptolearn-section-title" style={{ fontSize: "2.25rem", marginBottom: 15 }}>
-              Cryptographic Algorithms Overview
-            </h1>
-            <div style={{ fontSize: "1.07rem", color: "var(--text-secondary)", textAlign: "center" }}>
-              Learn how cryptographers conceal, protect, and verify information: <b>Caesar Cipher</b>, <b>AES-128</b>, and <b>SHA-256</b> each play a unique role in building secure digital systems.
-            </div>
-          </section>
+  const content = (
+    <main className="cryptolearn-content" style={{ paddingTop: 10 }}>
+      <section className="cryptolearn-section" style={{ marginBottom: 46 }}>
+        <h1 className="cryptolearn-section-title" style={{ fontSize: "2.25rem", marginBottom: 15 }}>
+          Cryptographic Algorithms Overview
+        </h1>
+        <div style={{ fontSize: "1.07rem", color: "var(--text-secondary)", textAlign: "center" }}>
+          Learn how cryptographers conceal, protect, and verify information: <b>Caesar Cipher</b>, <b>AES-128</b>, and <b>SHA-256</b> each play a unique role in building secure digital systems.
+        </div>
+      </section>
 
           {/* Caesar Cipher Section */}
           <section className="cryptolearn-section">
