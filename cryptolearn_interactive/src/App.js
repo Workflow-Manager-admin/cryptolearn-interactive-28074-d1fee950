@@ -74,8 +74,17 @@ function Navbar() {
       <div className="container" style={{maxWidth: 1200, width: '100%', margin: '0 auto'}}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
           <div className="logo">
-            <span className="logo-symbol" style={{color: 'var(--accent)'}}>*</span>{' '}
-            <span style={{color: 'var(--secondary)'}}>CipherLab</span>
+            <span
+              style={{
+                color: 'var(--secondary)',
+                fontSize: '2.15rem',
+                fontWeight: 800,
+                letterSpacing: '0.02em',
+                lineHeight: 1,
+              }}
+            >
+              CipherLab
+            </span>
           </div>
           <a href="https://github.com/" style={{color:"var(--accent)", fontWeight: 500, textDecoration:"none"}} target="_blank" rel="noopener noreferrer">GitHub</a>
         </div>
