@@ -238,25 +238,34 @@ select:focus {
 }
 /* Buttons */
 .btn {
-  background-color: var(--secondary);
-  color: #fff;
+  background: linear-gradient(90deg, #14ff6f 60%, #00eaff 100%);
+  color: #010904;
   border: none;
   border-radius: 5px;
-  padding: 10px 20px;
-  font-size: 1rem;
-  font-weight: 500;
+  padding: 10px 22px;
+  font-size: 1.01rem;
+  font-family: var(--font-mono);
+  letter-spacing: 0.07em;
+  font-weight: 900;
   cursor: pointer;
-  transition: background 0.2s;
   margin: 0 4px;
+  box-shadow: 0 0 10px #0eee88, 0 0 4px var(--accent);
+  transition: background 0.22s, color 0.16s, box-shadow 0.2s, filter 0.1s;
+  filter: brightness(1.16) drop-shadow(0 0 12px #40ff5e33);
+  outline: none;
 }
 .btn:hover,
 .btn:focus {
-  background-color: var(--accent);
-  color: #101014;
+  background: linear-gradient(90deg, #00eaff 15%, #14ff6f 90%);
+  color: #000f05;
+  box-shadow: 0 0 18px #0fffaaa8, 0 0 12px #00eaffc4;
+  filter: brightness(1.32) saturate(1.12);
   outline: var(--focus-ring);
 }
 .btn:active {
-  background: #16b9c2;
+  background: #12149a;
+  color: #00eaff;
+  filter: brightness(0.92);
 }
 
 /* Quiz UI */
