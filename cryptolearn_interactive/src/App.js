@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import './App.css';
+import CryptoJS from 'crypto-js';
+import Chart from 'chart.js/auto';
 
 // PUBLIC_INTERFACE
 function App() {
