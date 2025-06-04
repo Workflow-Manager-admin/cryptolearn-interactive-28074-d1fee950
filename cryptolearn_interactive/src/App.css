@@ -271,20 +271,23 @@ select:focus {
 /* Quiz UI */
 .cryptolearn-quiz {
   margin-top: 18px;
-  padding: 12px 10px 10px 12px;
-  background: #191b23;
+  padding: 14px 10px 10px 12px;
+  background: #0b1d14;
   border-radius: 8px;
-  border: 1.4px solid var(--accent);
+  border: 1.9px solid var(--accent);
   max-width: 400px;
   margin-left: auto;
   margin-right: auto;
-  box-shadow: 0 2px 4px #0002;
+  box-shadow: 0 2px 9px #05ff2060;
+  font-family: var(--font-mono);
 }
 .cryptolearn-quiz-q {
   font-size: 1.08rem;
-  font-weight: 500;
+  font-weight: 700;
   margin-bottom: 7px;
-  color: var(--secondary);
+  color: var(--accent);
+  letter-spacing: 0.01em;
+  font-family: var(--font-mono);
 }
 .cryptolearn-quiz-choices {
   padding-left: 0;
@@ -293,41 +296,57 @@ select:focus {
 .cryptolearn-quiz-choice {
   list-style: none;
   margin-bottom: 0;
-  background: #181826;
+  background: #081e16;
   color: var(--text-color);
-  box-shadow: 0 1px 2px #0002;
+  box-shadow: 0 1px 2px #05ff205a;
+  border: 1.5px solid var(--secondary);
+  font-family: var(--font-mono);
+  border-radius: 4px;
+  outline: none;
+  transition: background 0.15s, color 0.13s, box-shadow 0.15s;
 }
 .cryptolearn-quiz-choice:hover,
 .cryptolearn-quiz-choice:focus {
   background: var(--accent);
-  color: #101014;
-  outline: var(--focus-ring);
+  color: #010a04;
+  box-shadow: 0 0 9px #00eaff99;
+  filter: brightness(1.25);
+  outline: 2.5px solid var(--secondary);
 }
 
 .cryptolearn-edu-title {
   color: var(--accent);
-  font-size: 1.16rem;
+  font-size: 1.22rem;
   margin: 14px 0 5px 0;
-  font-weight: 700;
+  font-weight: 800;
+  font-family: var(--font-mono);
+  letter-spacing: 0.06em;
+  text-shadow: 0 0 12px #39ff1460;
 }
 .cryptolearn-edu-explanation {
-  color: #fff;
+  color: var(--text-color);
   font-size: 1rem;
   margin-bottom: 10px;
+  font-family: var(--font-mono);
 }
 
 /* Visualization blocks, chart, input/output, etc. */
 .cryptolearn-visualization {
-  box-shadow: 0 2px 9px #0001;
-  border-radius: 8px;
-  background: #181826;
+  box-shadow: 0 2px 13px #0cff91aa;
+  border-radius: 9px;
+  background: #121d11;
   padding: 8px;
+  font-family: var(--font-mono);
+  border: 1.6px solid var(--accent);
 }
 .cryptolearn-output-block output {
-  font-family: 'Fira Mono', 'Menlo', 'Monaco', monospace;
-  background: #181826;
-  padding: 4px 8px;
+  font-family: var(--font-mono);
+  background: #091e13;
+  padding: 4px 10px;
   border-radius: 6px;
+  font-size: 1.04rem;
+  color: var(--accent);
+  text-shadow: 0 0 4px #00eaff80, 0 0 19px #39ff1490;
 }
 
 /* Responsive design */
