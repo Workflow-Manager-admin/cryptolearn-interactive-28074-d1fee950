@@ -9,104 +9,273 @@
   --border-color: rgba(255, 255, 255, 0.13);
   --focus-ring: 0 0 0 2.5px var(--accent);
 }
+/* --- CryptoLearn Interactive Custom Styles --- */
 
 body {
   margin: 0;
   font-family: 'Inter', 'Roboto', 'Helvetica', 'Arial', sans-serif;
-  background-color: var(--base-dark);
+  background-color: var(--primary);
   color: var(--text-color);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
-.app {
+.app,
+.cryptolearn-main {
   min-height: 100vh;
+  min-width: 100vw;
+  background: var(--primary);
+  color: var(--text-color);
   display: flex;
   flex-direction: column;
 }
-
-.navbar {
+.cryptolearn-navbar {
   background-color: var(--base-dark);
-  padding: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-bottom: 1px solid var(--border-color);
+  padding: 16px 0;
+  border-bottom: 1.5px solid var(--border-color);
   position: fixed;
   top: 0;
-  width: 100%;
-  box-sizing: border-box;
+  width: 100vw;
   z-index: 100;
 }
-
-.logo {
-  font-size: 1.25rem;
-  font-weight: 600;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
 .logo-symbol {
-  color: var(--base-light);
+  font-size: 1.8rem;
+  vertical-align: bottom;
 }
-
-.container {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 0 24px;
-  width: 100%;
-  box-sizing: border-box;
-}
-
-.hero {
-  padding-top: 120px;
-  padding-bottom: 64px;
-  text-align: center;
+.cryptolearn-layout {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 24px;
+  min-height: 100vh;
+  margin-top: 70px;
+  width: 100%;
 }
-
-.subtitle {
-  color: var(--base-light);
-  font-weight: 500;
-  font-size: 1.1rem;
+.cryptolearn-sidebar {
+  background: var(--base-dark);
+  padding: 22px 0 22px 0;
+  min-width: 185px;
+  border-right: 1.5px solid var(--border-color);
+  min-height: 85vh;
 }
-
-.title {
-  font-size: 3.5rem;
-  font-weight: 600;
-  line-height: 1.2;
+.cryptolearn-sidebar ul {
+  list-style: none;
+  padding: 0;
   margin: 0;
 }
-
-.description {
-  font-size: 1.1rem;
-  line-height: 1.5;
+.cryptolearn-sidebar li {
+  padding: 14px 28px;
+  font-size: 1rem;
   color: var(--text-secondary);
-  max-width: 600px;
-  margin-bottom: 16px;
+  background: transparent;
+  border-left: 4px solid transparent;
+  transition: background 0.16s, color 0.16s, border-color 0.18s;
 }
-
-.btn {
-  background-color: var(--base-light);
-  color: white;
-  border: none;
+.cryptolearn-sidebar li.active {
+  color: var(--secondary);
+  background: rgba(245,158,66,0.08);
+  border-left: 4px solid var(--secondary);
+  font-weight: 700;
+}
+.cryptolearn-sidebar li:hover,
+.cryptolearn-sidebar li:focus {
+  color: var(--accent);
+  background: rgba(34,211,238,0.07);
+  outline: none;
+}
+.cryptolearn-content {
+  flex: 1;
+  padding: 42px 0 22px 0;
+  max-width: 100vw;
+  min-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+}
+.cryptolearn-section {
+  margin: 0 auto;
+  max-width: 750px;
+  width: 97%;
+  background: var(--base-light);
+  border-radius: 12px;
+  box-shadow: 0 2px 18px #0003;
+  padding: 36px 28px 24px 28px;
+  margin-bottom: 36px;
+  border: 1.5px solid var(--border-color);
+}
+.cryptolearn-section-title {
+  font-size: 2.05rem;
+  color: var(--secondary);
+  font-weight: 700;
+  margin-bottom: 18px;
+  text-align: center;
+}
+.cryptolearn-input-block,
+.cryptolearn-output-block {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 18px;
+  padding-bottom: 12px;
+}
+.cryptolearn-output-block label {
+  font-weight: 600;
+  font-size: 1.05rem;
+}
+.cryptolearn-visualization {
+  margin: 24px 0;
+}
+/* Input fields */
+input[type="text"],
+input[type="number"],
+select {
+  background: #14171d;
+  color: var(--text-color);
+  border: 1.2px solid var(--accent);
   border-radius: 4px;
+  padding: 6px 10px;
+  font-size: 1rem;
+  margin: 0 4px;
+}
+input[type="text"]:focus,
+input[type="number"]:focus,
+select:focus {
+  outline: var(--focus-ring);
+}
+/* Buttons */
+.btn {
+  background-color: var(--secondary);
+  color: #fff;
+  border: none;
+  border-radius: 5px;
   padding: 10px 20px;
   font-size: 1rem;
   font-weight: 500;
   cursor: pointer;
-  transition: background-color 0.2s ease;
+  transition: background 0.2s;
+  margin: 0 4px;
+}
+.btn:hover,
+.btn:focus {
+  background-color: var(--accent);
+  color: #101014;
+  outline: var(--focus-ring);
+}
+.btn:active {
+  background: #16b9c2;
 }
 
-.btn:hover {
-  background-color: #7691ff;
+/* Quiz UI */
+.cryptolearn-quiz {
+  margin-top: 18px;
+  padding: 12px 10px 10px 12px;
+  background: #191b23;
+  border-radius: 8px;
+  border: 1.4px solid var(--accent);
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0 2px 4px #0002;
+}
+.cryptolearn-quiz-q {
+  font-size: 1.08rem;
+  font-weight: 500;
+  margin-bottom: 7px;
+  color: var(--secondary);
+}
+.cryptolearn-quiz-choices {
+  padding-left: 0;
+  margin-top: 10px;
+}
+.cryptolearn-quiz-choice {
+  list-style: none;
+  margin-bottom: 0;
+  background: #181826;
+  color: var(--text-color);
+  box-shadow: 0 1px 2px #0002;
+}
+.cryptolearn-quiz-choice:hover,
+.cryptolearn-quiz-choice:focus {
+  background: var(--accent);
+  color: #101014;
+  outline: var(--focus-ring);
 }
 
-.btn-large {
-  padding: 12px 24px;
-  font-size: 1.1rem;
+.cryptolearn-edu-title {
+  color: var(--accent);
+  font-size: 1.16rem;
+  margin: 14px 0 5px 0;
+  font-weight: 700;
 }
+.cryptolearn-edu-explanation {
+  color: #fff;
+  font-size: 1rem;
+  margin-bottom: 10px;
+}
+
+/* Visualization blocks, chart, input/output, etc. */
+.cryptolearn-visualization {
+  box-shadow: 0 2px 9px #0001;
+  border-radius: 8px;
+  background: #181826;
+  padding: 8px;
+}
+.cryptolearn-output-block output {
+  font-family: 'Fira Mono', 'Menlo', 'Monaco', monospace;
+  background: #181826;
+  padding: 4px 8px;
+  border-radius: 6px;
+}
+
+/* Responsive design */
+@media (max-width: 850px) {
+  .cryptolearn-layout {
+    flex-direction: column;
+  }
+  .cryptolearn-sidebar {
+    flex-direction: row;
+    min-width: 0;
+    width: 100%;
+    border-right: none;
+    border-bottom: 1.5px solid var(--border-color);
+    min-height: unset;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 12px 0 2px 0;
+  }
+  .cryptolearn-sidebar ul {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: center;
+  }
+  .cryptolearn-sidebar li {
+    padding: 12px 16px;
+    border-left: none;
+    border-bottom: 4px solid transparent;
+  }
+  .cryptolearn-sidebar li.active {
+    border-bottom: 4px solid var(--secondary);
+    background: rgba(245,158,66,0.07);
+    border-left: none;
+  }
+  .cryptolearn-content {
+    padding: 8px 0 22px 0;
+  }
+  .cryptolearn-section {
+    padding: 18px 4px 18px 4px;
+  }
+}
+
+/* Typography fixes */
+.cryptolearn-section h2,
+.cryptolearn-section-title,
+.cryptolearn-edu-title {
+  font-family: 'Inter', sans-serif;
+}
+
+footer {
+  background: #191b23;
+  border-top: 1.5px solid var(--border-color);
+  width: 100vw;
+  text-align: center;
+}
+/* END CryptoLearn styles */
